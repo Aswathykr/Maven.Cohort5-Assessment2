@@ -1,5 +1,9 @@
 package rocks.zipcode.assessment2.fundamentals;
 
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 /**
  * @author leon on 28/11/2018.
  */
@@ -10,7 +14,9 @@ public class StringUtils {
      * @return `stringToBePadded` flushed right by left-padding
      */
     public static String padLeft(String stringToBePadded, int amountOfPadding) {
-        return null;
+        String result = String.format("%%%ds", amountOfPadding);
+
+        return String.format(result, stringToBePadded);
     }
 
     /**
@@ -19,7 +25,9 @@ public class StringUtils {
      * @return `stringToBePadded` flushed right by right-padding
      */
     public static String padRight(String stringToBePadded, int amountOfPadding) {
-        return null;
+        String result = String.format("%%%ds", -amountOfPadding);
+        return String.format(result, stringToBePadded);
+
     }
 
     /**
@@ -28,7 +36,11 @@ public class StringUtils {
      * @return the string repeated and concatenated `n` times
      */
     public static String repeatString(String stringToBeRepeated, int numberOfTimeToRepeat) {
-        return null;
+        String result = stringToBeRepeated;
+        for (int i = 1; i < numberOfTimeToRepeat; i++) {
+            result += stringToBeRepeated;
+        }
+        return result;
     }
 
     /**
@@ -36,7 +48,13 @@ public class StringUtils {
      * @return - true if string only contains alpha characters
      */
     public static Boolean isAlphaString(String string) {
-        return null;
+        string = string.replace(" ","");
+        int[]chars = string.chars().
+                filter(c-> !Character.isAlphabetic(c))
+                .toArray();
+
+
+        return chars.length == 0;
     }
 
     /**
@@ -44,7 +62,13 @@ public class StringUtils {
      * @return - true if string only contains numeric characters
      */
     public static Boolean isNumericString(String string) {
-        return null;
+
+        int[]chars = string.chars().
+                filter(c-> !Character.isDigit(c))
+                .toArray();
+
+        return chars.length == 0;
+
     }
 
     /**
@@ -52,6 +76,11 @@ public class StringUtils {
      * @return - true if string only contains special characters
      */
     public static Boolean isSpecialCharacterString(String string) {
-        return null;
+        int[]chars = string.chars().
+                filter(c-> Character.isLetterOrDigit(c))
+                .toArray();
+
+        return chars.length == 0;
+
     }
 }
